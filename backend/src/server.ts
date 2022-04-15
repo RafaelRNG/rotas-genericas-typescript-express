@@ -1,6 +1,7 @@
 import express from 'express'
 import cors from 'cors'
 import mongoose from 'mongoose'
+import { userRouter } from './routes/User.router'
 
 class Server {
 
@@ -19,9 +20,7 @@ class Server {
    }
 
    private routes(): void {
-      this.server.get('/ola', (request, response) => {
-         return response.status(200).json({message: 'ola mundo'})
-      })
+      this.server.use('/users', userRouter)
    }
 
    private database(): Promise<typeof mongoose> {
