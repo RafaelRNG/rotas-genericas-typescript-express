@@ -13,9 +13,12 @@ class UserRouter extends GenericRouter<UserInterface> {
    }
 
    public applyRoutes(): void {
-      this.router.get('/:_id', async (request: Request, response: Response) => {
-         return await this.findOne(request, response, [])
-      })
+
+      this.router.get('', (request: Request, response: Response) => this.find(response, []))
+
+      this.router.get('/:_id', (request: Request, response: Response) => this.findById(request, response, []))
+
+      this.router.delete('/:_id', (request: Request, response: Response) => this.deleteById(request, response))
    }
 }
 
