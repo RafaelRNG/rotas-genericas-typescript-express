@@ -1,4 +1,5 @@
 import { Schema, Document, model } from 'mongoose'
+import mongoosePaginate from 'mongoose-paginate-v2'
 import { hash } from 'bcrypt'
 
 export interface UserInterface extends Document {
@@ -28,6 +29,8 @@ const userSchema = new Schema({
       required: true
    }
 })
+
+userSchema.plugin(mongoosePaginate)
 
 userSchema.pre('save', function (next) {
    const user: UserInterface = this

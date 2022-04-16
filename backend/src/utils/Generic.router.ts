@@ -7,9 +7,12 @@ export default abstract class GenericRouter<T extends Document> {
 
    //all documents
    public async find(response: Response, fields: string[]): Promise<Response> {
-      const result = await this.model.find()
-         .select([...fields])
+      //const result = await this.model.find()
+      //   .select([...fields])
 
+      //return response.status(200).json(result)
+      //@ts-ignore
+      const result = await this.model.paginate()
       return response.status(200).json(result)
    }
 
