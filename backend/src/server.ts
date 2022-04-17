@@ -2,6 +2,7 @@ import express from 'express'
 import cors from 'cors'
 import mongoose from 'mongoose'
 import { userRouter } from './routes/User.router'
+import { productRouter } from './routes/Product.router'
 
 class Server {
 
@@ -21,6 +22,7 @@ class Server {
 
    private routes(): void {
       this.server.use('/users', userRouter)
+      this.server.use('/products', productRouter)
    }
 
    private database(): Promise<typeof mongoose> {

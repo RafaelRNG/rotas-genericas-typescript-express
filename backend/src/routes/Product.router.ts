@@ -1,19 +1,18 @@
-import { Request, Response, Router } from 'express'
-import { UserInterface, userModel } from '../models/User.model'
+import { Router, Request, Response } from 'express'
+import { ProductInterface, productModel } from '../models/Product.model'
 import GenericRouter from '../utils/Generic.router'
 
-class UserRouter extends GenericRouter<UserInterface> {
+class ProductRouter extends GenericRouter<ProductInterface>{
 
    public router: Router
 
    public constructor() {
-      super(userModel)
+      super(productModel)
       this.router = Router()
-      this.applyRoutes()
+      this.applyRouter()
    }
 
-   private applyRoutes(): void {
-
+   private applyRouter(): void {
       this.router.get('', (request: Request, response: Response) => this.find(response, []))
       this.router.get('/:_id', (request: Request, response: Response) => this.findById(request, response, []))
       this.router.post('', (request: Request, response: Response) => this.save(request, response))
@@ -22,4 +21,4 @@ class UserRouter extends GenericRouter<UserInterface> {
    }
 }
 
-export const userRouter = new UserRouter().router
+export const productRouter = new ProductRouter().router
