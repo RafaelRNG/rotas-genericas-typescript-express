@@ -14,7 +14,7 @@ class UserRouter extends GenericRouter<UserInterface> {
 
    private applyRoutes(): void {
 
-      this.router.get('', (request: Request, response: Response) => this.find(response, []))
+      this.router.get('', (request: Request, response: Response) => this.find(response))
       this.router.get('/:_id', (request: Request, response: Response) => this.findById(request, response, []))
       this.router.post('', (request: Request, response: Response) => this.save(request, response))
       this.router.put('/:_id', (request: Request, response: Response) => this.update(request, response))

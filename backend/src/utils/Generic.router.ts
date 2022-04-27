@@ -6,7 +6,7 @@ export default abstract class GenericRouter<T extends Document> {
    public constructor(protected model: Model<T>) { }
 
    //all documents
-   public async find(response: Response, fields: string[]): Promise<Response> {
+   public async find(response: Response): Promise<Response> {
       
       //@ts-ignore
       const result = await this.model.paginate()
@@ -19,7 +19,7 @@ export default abstract class GenericRouter<T extends Document> {
          const _id = request.params._id
          const result = await this.model.findById(_id)
             .select([...fields])
-
+         
          if (result === null || _id === null || !isValidObjectId(_id)) {
             return response.status(404).json({ message: 'Object not found!' })
          }
